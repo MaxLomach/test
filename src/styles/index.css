@@ -12,16 +12,6 @@ code {
     monospace;
 }
 
-.container-for-loader {
-  position: absolute;
-  left: 50%;
-  top: 45%;
-}
-.loader {
-  position: relative;
-  left: -50%;
-}
-
 .card {
   margin: 2% auto;
   width: 350px;

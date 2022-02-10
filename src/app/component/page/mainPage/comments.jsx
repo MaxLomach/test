@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import '../../index.css'
-import Splashscreen from './splashscreen'
-import Search from './search'
-import Table from './table/table'
-import Pagination from './pagination'
-import { paginate } from '../paginate'
+import Splashscreen from '../../ui/splashscreen'
+import Search from '../../search'
+import Table from '../../table/table'
+import Pagination from '../../pagination'
+import { paginate } from '../../../utils/paginate'
 
 const AllComments = () => {
   const [error, setError] = useState(null)
@@ -19,8 +18,11 @@ const AllComments = () => {
       .then((res) => res.json())
       .then(
         (result) => {
-          setIsLoaded(true)
-          setCommentsA(result)
+          setTimeout(() => {
+            setIsLoaded(false)
+            setIsLoaded(true)
+            setCommentsA(result)
+          }, 2000)
         },
         (error) => {
           setIsLoaded(true)
@@ -42,25 +44,19 @@ const AllComments = () => {
     setCurrentPage(pageIndex)
   }
 
-  const newState = (item) => {
-    const newBookmark = commentsA.map((element) => {
-      if (element.id === item.id) {
-        if (localStorage.getItem('Switch') === 'true') {
-          localStorage.setItem('Switch', 'false')
-        } else {
-          localStorage.setItem('Switch', 'true')
-        }
+  const handleNewState = (item) => {
+    const arr = commentsA.map((elem) => {
+      if (elem.id === item.id) {
+        elem.state ? (elem.state = false) : (elem.state = true)
       }
-      return element
+      return elem
     })
-
-    return setCommentsA(newBookmark)
+    return setCommentsA(arr)
   }
 
   if (commentsA) {
     const elem = searchElement ? searchElement : commentsA
     const count = elem.length
-    // const sortedUsers = _.orderBy(elem, [sortBy.path], [sortBy.order])
     const crop = paginate(elem, currentPage, pageSize)
 
     if (error) {
@@ -71,7 +67,7 @@ const AllComments = () => {
       return (
         <>
           <Search onSearch={handlSearch} />
-          <Table commentsA={crop} newState={newState} />
+          <Table commentsA={crop} handleNewState={handleNewState} />
           <Pagination
             itemsCount={count}
             pageSize={pageSize}

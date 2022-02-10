@@ -1,7 +1,7 @@
 import React from 'react'
-import AllComments from './app/component/comments'
+import AllComments from './app/component/page/mainPage/comments'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import Detailed from './app/component/detailed'
+import Detailed from './app/component/page/datailedPage/detailed'
 
 function App() {
   return (

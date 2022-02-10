@@ -10,7 +10,7 @@ const Search = ({ onSearch }) => {
 
   return (
     <div className=' mx-auto my-4 w-50 '>
-      <label className='form-label fw-bold' htmlFor='search'>
+      <label className='form-label fw-bold text-success' htmlFor='search'>
         Search by Email
       </label>
       <input

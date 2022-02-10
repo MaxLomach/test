@@ -1,9 +1,9 @@
 import React from 'react'
-import Detailed from '../detailed'
-import BookMark from '../bookMark'
+import Detailed from '../../component/page/datailedPage/detailed'
+import BookMark from '../ui/bookMark'
 import { Link, Switch, Route } from 'react-router-dom'
 
-const TableBody = ({ commentsA, newState }) => {
+const TableBody = ({ commentsA, handleNewState }) => {
   const tBody = commentsA.map((item) => {
     return (
       <>
@@ -13,8 +13,9 @@ const TableBody = ({ commentsA, newState }) => {
           <td>
             <BookMark
               onToggle={() => {
-                newState(item)
+                handleNewState(item)
               }}
+              item={item}
             />
           </td>
           <td>

@@ -4,14 +4,16 @@ import TableHeader from './tableHeader'
 
 const Table = (props) => {
   return (
-    <table className='table table-bordered table-hover bg-success bg-opacity-25 my-2'>
-      <thead className='text-center bg-success bg-opacity-50'>
-        <TableHeader />
-      </thead>
-      <tbody className='text-center'>
-        <TableBody {...props} />
-      </tbody>
-    </table>
+    <div className='container'>
+      <table className='table text-success border-success  rounded-3 my-2'>
+        <thead className='text-center '>
+          <TableHeader />
+        </thead>
+        <tbody className='text-center'>
+          <TableBody {...props} />
+        </tbody>
+      </table>
+    </div>
   )
 }
 
